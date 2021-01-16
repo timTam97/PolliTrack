@@ -105,57 +105,62 @@ s3 = boto3.Session(
 
 
 def lambda_handler(event, context):
-    # Generate signed headers
-    auth = AWSRequestsAuth(
-        aws_access_key=os.environ.get("ACCESS_KEY_ID"),
-        aws_secret_access_key=os.environ.get("SECRET_ACCESS_KEY"),
-        aws_host="runtime.sagemaker.us-east-1.amazonaws.com",
-        aws_region="us-east-1",
-        aws_service="sagemaker",
-    )
+    print(event["requestContext"]["http"]["method"])
+    if event["requestContext"]["http"]["method"] == "POST":
+        # Generate signed headers
+        auth = AWSRequestsAuth(
+            aws_access_key=os.environ.get("ACCESS_KEY_ID"),
+            aws_secret_access_key=os.environ.get("SECRET_ACCESS_KEY"),
+            aws_host="runtime.sagemaker.us-east-1.amazonaws.com",
+            aws_region="us-east-1",
+            aws_service="sagemaker",
+        )
 
-    # Grab the barcode from our sagemaker endpoint
-    ok = requests.post(
-        url="https://runtime.sagemaker.us-east-1.amazonaws.com/endpoints/acchackendpoint/invocations",
-        data=base64.b64decode(event["body"]),
-        auth=auth,
-        headers={"Content-Type": "image/jpeg"},
-        verify=False,
-    )
-    print(ok.text)
-    code = list(json.loads(ok.text).keys())[0]
-    object_key = secrets.token_urlsafe(10) + ".jpeg"
+        # Grab the barcode from our sagemaker endpoint
+        ok = requests.post(
+            url="https://runtime.sagemaker.us-east-1.amazonaws.com/endpoints/acchackendpoint/invocations",
+            data=base64.b64decode(event["body"]),
+            auth=auth,
+            headers={"Content-Type": "image/jpeg"},
+            verify=False,
+        )
+        print(ok.text)
+        code = list(json.loads(ok.text).keys())[0]
+        object_key = secrets.token_urlsafe(10) + ".jpeg"
 
-    # Send image to s3
-    res = s3.put_object(
-        ACL="public-read",
-        Body=base64.b64decode(event["body"]),
-        Bucket=os.environ.get("TABLE_NAME"),
-        Key=object_key,
-    )
-    # Get image lat/long
-    meta = ImageMetaData(io.BytesIO(base64.b64decode(event["body"])))
-    print(meta.get_lat_lng())
+        # Send image to s3
+        res = s3.put_object(
+            ACL="public-read",
+            Body=base64.b64decode(event["body"]),
+            Bucket=os.environ.get("TABLE_NAME"),
+            Key=object_key,
+        )
+        # Get image lat/long
+        meta = ImageMetaData(io.BytesIO(base64.b64decode(event["body"])))
+        print(meta.get_lat_lng())
 
-    # Chuck it all in dDB
-    res = ddb.put_item(
-        TableName="image-data-table",
-        Item={
-            "barcode": {
-                "S": code,
+        # Chuck it all in dDB
+        res = ddb.put_item(
+            TableName="image-data-table",
+            Item={
+                "barcode": {
+                    "S": code,
+                },
+                "timestamp": {
+                    "S": str(int(time.time())),
+                },
+                "image_url": {
+                    "S": "https://"
+                    + os.environ.get("TABLE_NAME")
+                    + ".s3.amazonaws.com/"
+                    + object_key
+                },
+                "latitude": {"N": str(meta.get_lat_lng()[0])},
+                "longitude": {"N": str(meta.get_lat_lng()[1])},
             },
-            "timestamp": {
-                "S": str(int(time.time())),
-            },
-            "image_url": {
-                "S": "https://"
-                + os.environ.get("TABLE_NAME")
-                + ".s3.amazonaws.com/"
-                + object_key
-            },
-            "latitude": {"N": str(meta.get_lat_lng()[0])},
-            "longitude": {"N": str(meta.get_lat_lng()[1])},
-        },
-    )
-
-    return {"statusCode": 200, "body": code}
+        )
+        return {"statusCode": 200, "body": code}
+    elif event["requestContext"]["http"]["method"] == "GET":
+        res = ddb.scan(TableName="image-data-table", ComparisonOperator="NOT_NULL")
+        print("done")
+        return {"statusCode": 200, "body": json.loads(res.get("Items"))}
