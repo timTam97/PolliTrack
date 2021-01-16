@@ -30,7 +30,7 @@ return (
             "amountOwed": 120.0,
           }],
           '2021-01-17': [{
-            "ProductName": "Sun King Pro 400", // Might get this from a look up table with the pollinategroup with the barcode
+            "ProductName": "Sun King Pro 300", // Might get this from a look up table with the pollinategroup with the barcode
             "barcode": "9300633645540",
             "timestamp": "1610792784",
             "image_url": "https://pollitrack-images-asdgybdvkl.s3.amazonaws.com/kIJvN7GdF-W7MQ.jpeg",
@@ -39,7 +39,7 @@ return (
             "amountOwed": 120.0,
           }],
           '2021-01-18': [{
-            "ProductName": "Sun King Pro 400", // Might get this from a look up table with the pollinategroup with the barcode
+            "ProductName": "Sun King Pro 200", // Might get this from a look up table with the pollinategroup with the barcode
             "barcode": "9300633645540",
             "timestamp": "1610792784",
             "image_url": "https://pollitrack-images-asdgybdvkl.s3.amazonaws.com/kIJvN7GdF-W7MQ.jpeg",
@@ -69,7 +69,7 @@ return (
         // Specify how each item should be rendered in agenda
         renderItem={(item) => {
               let navigationnext = navigation.navigate;
-              console.log(navigationnext);
+              // console.log(navigationnext);
               return (
                 <TouchableOpacity onPress={(navigation) => 
                 {navigationnext('itemDetails', {item: item})}}>

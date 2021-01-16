@@ -27,12 +27,13 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
       <BottomTab.Screen
         name="TabOne"
         component={AddProductNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-home" color={color} />,
+          headerShown: false
         }}
       />
       <BottomTab.Screen
@@ -40,6 +41,7 @@ export default function BottomTabNavigator() {
         component={TabTwoNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          headerShown: false
         }}
       />
       <BottomTab.Screen
@@ -47,6 +49,7 @@ export default function BottomTabNavigator() {
         component={TabThreeNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          headerShown: false
         }}
       />
       <BottomTab.Screen
@@ -54,6 +57,7 @@ export default function BottomTabNavigator() {
         component={Tab4Navigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          headerShown: false
         }}
       />
       <BottomTab.Screen
@@ -61,6 +65,7 @@ export default function BottomTabNavigator() {
         component={AgendaNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          headerShown: false
         }}
       />
     </BottomTab.Navigator>
@@ -79,11 +84,13 @@ const AddProductStack = createStackNavigator<AddProductParamList>();
 
 function AddProductNavigator() {
   return (
-    <AddProductStack.Navigator>
+    
+    <AddProductStack.Navigator
+    screenOptions={{ header: null }}>
       <AddProductStack.Screen
         name="AddProduct"
         component={AddProductScreen}
-        options={{ headerTitle: 'Add Product' }}
+        options={{ headerShown: false }}
       />
       <AddProductStack.Screen
         name="addPhotoPrompt"
@@ -96,6 +103,11 @@ function AddProductNavigator() {
         options={{ headerTitle: 'Add Barcode' }}
       />
       <AddProductStack.Screen
+        name="addBarcodeCapture"
+        component={AddBarcodeCapture}
+        options={{ headerTitle: 'Add Barcode' }}
+      />
+      <AddProductStack.Screen
         name="addSerialPrompt"
         component={AddSerialPrompt}
         options={{ headerTitle: 'Add Serial number' }}
@@ -104,12 +116,7 @@ function AddProductNavigator() {
         name="addPhotoCapture"
         component={AddPhotoCapture}
         options={{ headerTitle: 'Add Photo' }}
-      />
-      <AddProductStack.Screen
-        name="addBarcodeCapture"
-        component={AddBarcodeCapture}
-        options={{ headerTitle: 'Add Barcode' }}
-      />
+      />    
       <AddProductStack.Screen
         name="addSerialCapture"
         component={AddSerialCapture}

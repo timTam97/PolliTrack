@@ -9,23 +9,14 @@ const timeToString = (time) => {
   return date.toISOString().split('T')[0];
 };
 
-export default function ItemDetails({props}) {
-  console.log(props)
-  let item = {
-            "ProductName": "Sun King Pro 400", // Might get this from a look up table with the pollinategroup with the barcode
-            "barcode": "9300633645540",
-            "timestamp": "1610792784",
-            "image_url": "https://pollitrack-images-asdgybdvkl.s3.amazonaws.com/kIJvN7GdF-W7MQ.jpeg",
-            "latitude": -37.862458333333336,
-            "longitude": 145.1865527777778,
-            "amountOwed": 120.0,
-          };
+export default function ItemDetails({navigation, route}) {
+  let item = route.params.item;
   const [items, setItems] = useState({});
 return (
     <SafeAreaView style={{ flex: 1 }}>
-      <Text style={{}}>Show item</Text>
+      <Text style={{}}>Show item: {item.ProductName}</Text>
       <Text style={{}}>Item: {item.barcode}</Text>
-      <Text style={{}}>Time Sold: { }</Text>
+      <Text style={{}}>Time Sold: {timeToString}</Text>
       <Text style={{}}>Serial Number: { }</Text>
       <Text style={{}}>barcode: { }</Text>
 
