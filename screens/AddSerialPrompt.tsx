@@ -17,7 +17,7 @@ export default function AddSerialPrompt({navigation}) {
 
         </View>
         <Image
-          source={require('../assets/images/serial.png')}
+          source={require('../assets/images/bar.png')}
           resizeMode="contain"
           style={styles.placement}
         ></Image>
