@@ -11,6 +11,16 @@ export default function TabTwoScreen() {
   const [type] = useState(Camera.Constants.Type.back);
   // const cameraRef = useRef(null);
 
+  var request = require('request');
+  var options = {
+    'method': 'POST',
+    'url': 'https://ta66kmwbn2.execute-api.us-east-1.amazonaws.com/prod/getImageData',
+    'headers': {
+      'Content-Type': 'image/jpeg'
+    },
+    body: "<  file contents here>"
+  };
+
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestPermissionsAsync();
@@ -30,7 +40,7 @@ export default function TabTwoScreen() {
 
   const __takePicture = async () => {
     if (cameraRef) {
-      const photo: any = await cameraRef.takePictureAsync({ onPictureSaved: this.onPictureSaved });
+      const photo: any = await cameraRef.takePictureAsync();
       setPreviewVisible(true)
       //setStartCamera(false)
       setCapturedImage(photo)
@@ -38,12 +48,25 @@ export default function TabTwoScreen() {
   
   onPictureSaved = photo => {
     console.log(photo);
+    postToDb(photo);
   }
 
-  const __savePhoto = () => {}
-    
-    
-  }
+  const postToDb = async (photo) => {
+    options = {
+      'method': 'POST',
+      'url': 'https://ta66kmwbn2.execute-api.us-east-1.amazonaws.com/prod/getImageData',
+      'headers': {
+        'Content-Type': 'image/jpeg'
+      },
+      body: photo
+    };
+    request(options, function (error, response) {
+      if (error) throw new Error(error);
+      console.log(response.body);
+    });
+  } 
+  // const __savePhoto = () => {}
+  // }
 
   if (hasPermission === null) {
     return <SafeAreaView />;
@@ -102,6 +125,7 @@ export default function TabTwoScreen() {
     </SafeAreaView>
   );
 }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -132,5 +156,5 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     color: 'white',
-  },
+  }
 });
