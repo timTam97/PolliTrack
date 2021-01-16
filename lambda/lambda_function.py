@@ -29,7 +29,7 @@ class ImageMetaData(object):
         super(ImageMetaData, self).__init__()
 
     def get_exif_data(self):
-        """Returns a dictionary from the exif data of an PIL Image item. Also converts the GPS Tags"""
+        """Returns a dictionary from the exif data of an PIL Image item. Also converts the GPS Tags."""
         exif_data = {}
         info = self.image._getexif()
         if info:
