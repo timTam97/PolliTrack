@@ -20,9 +20,8 @@ export default function App() {
     }
   }
   const __takePicture = async () => {
-    const options = { onPictureSaved: this.onPictureSaved, base64: true }
+    const options = { onPictureSaved: this.onPictureSaved}
     const photo: any = await camera.takePictureAsync(options);
-    console.log(photo);
     setPreviewVisible(true);
     //setStartCamera(false)
     setCapturedImage(photo);
@@ -43,7 +42,9 @@ export default function App() {
 //     });
 //   } 
 
-//   const __savePhoto = () => {}
+   const __savePhoto = () => {
+    console.log(photo);
+   }
 
   const __retakePicture = () => {
     setCapturedImage(null)

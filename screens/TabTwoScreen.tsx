@@ -11,16 +11,6 @@ export default function TabTwoScreen() {
   const [type] = useState(Camera.Constants.Type.back);
   // const cameraRef = useRef(null);
 
-  var request = require('request');
-  var options = {
-    'method': 'POST',
-    'url': 'https://ta66kmwbn2.execute-api.us-east-1.amazonaws.com/prod/getImageData',
-    'headers': {
-      'Content-Type': 'image/jpeg'
-    },
-    body: "<  file contents here>"
-  };
-
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestPermissionsAsync();
@@ -48,23 +38,7 @@ export default function TabTwoScreen() {
   
   onPictureSaved = photo => {
     console.log(photo);
-    postToDb(photo);
   }
-
-  const postToDb = async (photo) => {
-    options = {
-      'method': 'POST',
-      'url': 'https://ta66kmwbn2.execute-api.us-east-1.amazonaws.com/prod/getImageData',
-      'headers': {
-        'Content-Type': 'image/jpeg'
-      },
-      body: photo
-    };
-    request(options, function (error, response) {
-      if (error) throw new Error(error);
-      console.log(response.body);
-    });
-  } 
   // const __savePhoto = () => {}
   // }
 
