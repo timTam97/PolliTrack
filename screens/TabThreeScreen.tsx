@@ -2,7 +2,7 @@ import {StatusBar} from 'expo-status-bar'
 import React from 'react'
 import {StyleSheet, Text, View, TouchableOpacity, Alert, ImageBackground, Image} from 'react-native'
 import {Camera} from 'expo-camera'
-import { Buffer } from "buffer"
+import * as ImageManipulator from 'expo-image-manipulator';
 
 let camera: Camera
 export default function App() {
@@ -89,9 +89,9 @@ export default function App() {
     //     .catch(err => {
     //     console.log(err);
     //     });
-    console.log(photo.uri + "asdasd")
-    let dec = await fetch(`data:image/jpeg;base64,${photo.base64}`)
-    let theblob = await dec.blob()
+    let resizedImage = await ImageManipulator.manipulateAsync(photo.uri, [],  {compress:0, base64:true});
+    let dec = await fetch(`data:image/jpeg;base64,${resizedImage.base64}`);
+    let theblob = await dec.blob();
     console.log(theblob.size)
     let res = await fetch('https://ta66kmwbn2.execute-api.us-east-1.amazonaws.com/prod/getImageData', {
         method: 'POST',
