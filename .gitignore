@@ -11,3 +11,9 @@ web-build/
 
 # macOS
 .DS_Store
+
+lambda/myvenv/
+
+lambda/package/
+
+lambda/my-deployment-package.zip
