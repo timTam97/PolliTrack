@@ -27,7 +27,7 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
+      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
         name="TabOne"
         component={AddProductNavigator}
@@ -86,7 +86,7 @@ function AddProductNavigator() {
   return (
     
     <AddProductStack.Navigator
-    screenOptions={{ header: null }}>
+    screenOptions={{ header: () => {}}}>
       <AddProductStack.Screen
         name="AddProduct"
         component={AddProductScreen}
