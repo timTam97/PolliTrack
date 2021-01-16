@@ -26,8 +26,8 @@ return (
             "serialNumber": "1892336323",
             "timestamp": "1610792784",
             "image_url": "https://pollitrack-images-asdgybdvkl.s3.amazonaws.com/kIJvN7GdF-W7MQ.jpeg",
-            "latitude": -37.862458333333336,
-            "longitude": 145.1865527777778,
+            "latitude": -37.87357858260272,
+            "longitude": 145.1643963232295,
             "amountOwed": 0,
           }],
           '2021-01-17': [{

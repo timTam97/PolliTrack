@@ -15,9 +15,9 @@ export default function ItemDetails({navigation, route}) {
   console.log(item.image_url + "Cool");
 return (
 
-    <SafeAreaView style={{}}>
-    <KeyboardAvoidingView>
-      <ScrollView>
+  <SafeAreaView style={{ backgroundColor: "#FDF5D8", height: '100%'}}>
+    <KeyboardAvoidingView style={{ backgroundColor: "#FDF5D8" }}>
+      <ScrollView style={{ backgroundColor: "#FDF5D8" }}>
       <Card style = {{marginHorizontal: 10, marginVertical: 10}}>
       <Card.Title title={"Item: " + item.productName} right={(x) => {
         return (<Image source={{ uri: item.image_url }} resizeMode="contain" style={{ width: x.size * 2.5, aspectRatio: 1, borderRadius: 10000, ...styles.boxWithShadow, }} />)}}/>
@@ -38,13 +38,13 @@ return (
         </View>
         <Title style={{fontSize: 30, textAlign: "center", marginTop:20}}>Payment</Title>
         <View style={{ display: "flex", flexDirection: 'row', marginTop: 10}}>
-              <Button mode='contained' compact={true} onPress={() => {setPrice('0')}}>Paid</Button>
+              <Button dark={true} color="#de8c1e"  mode='contained' compact={true} onPress={() => {setPrice('0')}}>Paid</Button>
               <TextInput keyboardType="number-pad" textAlign="right" value={price} onChange={setPrice} style={{ flex: 1, marginHorizontal: 10, backgroundColor: "#EAEAEA", paddingHorizontal: 10}}/>
-           <Button mode="outlined" compact={true}>Update</Button> 
+              <Button color="#de8c1e"  mode="outlined" compact={true}>Update</Button> 
         </View>
         </Card.Content>
         <Card.Actions style={{ display: 'flex', alignContent: 'center', flexDirection: 'row'}}>
-            <Button style={{ width: "50%", flex: 1, aspectRatio: 6, alignItems: 'center', alignContent: 'center', paddingVertical: 6 }} mode="contained" onPress={() => navigation.goBack()}><Text style={{fontSize: 20}}>DONE</Text></Button>
+            <Button dark={true} color="#de8c1e" style={{ width: "50%", flex: 1, aspectRatio: 6, alignItems: 'center', alignContent: 'center', paddingVertical: 6 }} mode="contained" onPress={() => navigation.goBack()}><Text style={{fontSize: 20}}>DONE</Text></Button>
         </Card.Actions>
       </Card>
     </ScrollView>
