@@ -1,15 +1,18 @@
 import React from 'react';
 import {SafeAreaView, View, Text, Image, StyleSheet, ScrollView, TouchableHighlight} from 'react-native';
 
-export default function Tab4Screen({navigation}) {
+export default function Tab5Screen({navigation}) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.greetingContainer}>
         <Image
-          source={require('../assets/images/Greeting.png')}
+          source={require('../assets/images/check.png')}
           resizeMode="contain"
-          style={styles.greeting}
+          style={styles.placement}
         ></Image>
+        <Text style={styles.title}>TY</Text>
+        <Text style={styles.subtitle}>Photos have been sent</Text>
+
       </View>
       
     </SafeAreaView>
@@ -17,32 +20,6 @@ export default function Tab4Screen({navigation}) {
 }
 
 const styles = StyleSheet.create({
-  headerContent: {
-    paddingLeft: 40,
-    position: 'absolute',
-    left: -10,
-    top: 10,
-    justifyContent: 'center',
-  },
-  textStyle: {
-    fontSize: 18,
-    color: '#807B7B',
-    lineHeight: 20,
-  },
-  image6: {
-    width: 129,
-    height: 140,
-    marginHorizontal: 10,
-  },
-  scrollViewContainerStyle: {
-    alignContent: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginHorizontal: 0,
-    height: 200,
-    paddingLeft: 20,
-    paddingRight: 100,
-  },
   bottomContainer: {
     position: 'absolute',
     bottom: -180,
@@ -59,13 +36,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 405,
   },
-  greeting: {
-    width: 350,
-    height: 250,
-    top: -70,
-    left: 30,
+  placement: {
+    marginHorizontal: 110,
+    marginVertical:20
   },
-  greetingContainer: {
-    height: 0,
+  title: {
+    fontSize: 150,
+    // fontWeight: 'bold',
+    color: '#DE8C1E',
+    fontFamily: 'Roboto',
+    textAlign: 'center'
   },
+  subtitle: {
+    fontSize: 50,
+    // fontWeight: 'bold',
+    color: '#DE8C1E',
+    fontFamily: 'Roboto',
+    textAlign: 'center'
+  }
 });
