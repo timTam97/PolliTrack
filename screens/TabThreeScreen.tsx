@@ -32,13 +32,27 @@ export default function App() {
     // const request = require('request');
     // let responce;
     // console.log(photo)
-    await fetch('https://ta66kmwbn2.execute-api.us-east-1.amazonaws.com/prod/getImageData', {
-        'method': 'POST',
-        'headers': {
+    // fetch("https://ta66kmwbn2.execute-api.us-east-1.amazonaws.com/prod/getImageData", {
+    //     "method": "POST",
+    //     "headers": {
+    //         "content-type": "image/jpeg"
+    //     },
+    //     body: photo.base64
+    //     })
+    //     .then(response => {
+    //     console.log(response);
+    //     })
+    //     .catch(err => {
+    //     console.log(err);
+    //     });
+    let res = await fetch('https://ta66kmwbn2.execute-api.us-east-1.amazonaws.com/prod/getImageData', {
+        method: 'POST',
+        headers: { 
             'Content-Type': 'image/jpeg'
         },
         body: photo.base64
-    }).then(console.log)
+    });
+    console.log(await res.json());
   } 
 
   const __confirm = (photo) => {
