@@ -157,8 +157,8 @@ def lambda_handler(event, context):
                 + ".s3.amazonaws.com/"
                 + object_key
             },
-            "latitude": {"N": str(meta.get_lat_lng()[0])},
-            "longitude": {"N": str(meta.get_lat_lng()[1])},
+            # "latitude": {"N": str(meta.get_lat_lng()[0])},
+            # "longitude": {"N": str(meta.get_lat_lng()[1])},
         },
     )
     return {"statusCode": 200, "body": json.dumps({"msg": "success", "barcode": code})}
