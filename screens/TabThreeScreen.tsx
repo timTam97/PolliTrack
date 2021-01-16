@@ -2,6 +2,8 @@ import {StatusBar} from 'expo-status-bar'
 import React from 'react'
 import {StyleSheet, Text, View, TouchableOpacity, Alert, ImageBackground, Image} from 'react-native'
 import {Camera} from 'expo-camera'
+import { Buffer } from "buffer"
+
 let camera: Camera
 export default function App() {
   const [startCamera, setStartCamera] = React.useState(false)
@@ -28,6 +30,48 @@ export default function App() {
     //setStartCamera(false)
   }
 
+  // const b64toBlob = (b64Data, contentType='', sliceSize=10000) => {
+  //   const byteCharacters = atob(b64Data);
+  //   const byteArrays = [];
+  
+  //   for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+  //     const slice = byteCharacters.slice(offset, offset + sliceSize);
+  
+  //     const byteNumbers = new Array(slice.length);
+  //     for (let i = 0; i < slice.length; i++) {
+  //       byteNumbers[i] = slice.charCodeAt(i);
+  //     }
+  
+  //     const byteArray = new Uint8Array(byteNumbers);
+  //     byteArrays.push(byteArray);
+  //   }
+  
+  //   const blob = new Blob(byteArrays, {type: contentType});
+  //   return blob;
+  // }
+  // function b64toBlob(dataURI: string) {
+
+  //   var byteString = atob(dataURI.split(',')[1]);
+  //   var ab = new ArrayBuffer(byteString.length);
+  //   var ia = new Uint8Array(ab);
+
+  //   for (var i = 0; i < byteString.length; i++) {
+  //     ia[i] = byteString.charCodeAt(i);
+  //   }
+  //   return new Blob([ab], { type: undefined });
+  // }
+  function b64toBlob(dataURI: string) {
+    var byteCharacters = atob(dataURI.replace(/^data:image\/(png|jpeg|jpg);base64,/, ''));
+    var byteNumbers = new Array(byteCharacters.length);
+    for (var i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+
+    var byteArray = new Uint8Array(byteNumbers);
+    return new Blob([byteArray], {
+      type: undefined
+    });
+  }
   const postToDb = async (photo) => {
     // const request = require('request');
     // let responce;
@@ -45,12 +89,17 @@ export default function App() {
     //     .catch(err => {
     //     console.log(err);
     //     });
+    console.log(photo.uri + "asdasd")
+    let dec = await fetch(`data:image/jpeg;base64,${photo.base64}`)
+    let theblob = await dec.blob()
+    console.log(theblob.size)
     let res = await fetch('https://ta66kmwbn2.execute-api.us-east-1.amazonaws.com/prod/getImageData', {
         method: 'POST',
         headers: { 
             'Content-Type': 'image/jpeg'
         },
-        body: photo.base64
+        body: theblob
+        // body: await (await fetch(`data:image/jpeg;base64,${photo.base64}`)).blob()
     });
     console.log(await res.json());
   } 
