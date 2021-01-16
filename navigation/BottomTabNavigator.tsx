@@ -19,6 +19,8 @@ import AddSerialPrompt from '../screens/AddSerialPrompt';
 import AgendaScreen from '../screens/AgendaScreen';
 import ItemDetails from '../screens/ItemDetails';
 import AcceptanceScreen from '../screens/AcceptanceScreen';
+import { AntDesign } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -30,18 +32,18 @@ export default function BottomTabNavigator() {
       initialRouteName="Home"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="TabOne"
+        name="AddProduct"
         component={AddProductNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-home" color={color} />,
+          tabBarIcon: ({ color }) => <AntDesign name="pluscircle" size={24} color={color} />,
           headerShown: false
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
+        name="Map"
         component={TabTwoNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <Entypo name="map" size={24} color={color} />,
           headerShown: false
         }}
       />
@@ -54,10 +56,10 @@ export default function BottomTabNavigator() {
         }}
       /> */}
       <BottomTab.Screen
-        name="Tab5"
+        name="Agenda"
         component={AgendaNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <AntDesign name="calendar" size={24} color={color} />,
           headerShown: false
         }}
       />

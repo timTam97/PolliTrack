@@ -10,8 +10,8 @@ const timeToString = (time) => {
 };
 let price = undefined;
 export default function ItemDetails({navigation, route}) {
-  const [price, setPrice] = useState({});
   let item = route.params.item;
+  const [price, setPrice] = useState(item.amountOwed.toString());
   console.log(item.image_url + "Cool");
 return (
 
@@ -39,7 +39,7 @@ return (
         <Title style={{fontSize: 30, textAlign: "center", marginTop:20}}>Payment</Title>
         <View style={{ display: "flex", flexDirection: 'row', marginTop: 10}}>
               <Button mode='contained' compact={true} onPress={() => {setPrice('0')}}>Paid</Button>
-              <TextInput keyboardType="number-pad" textAlign="right" value={price} onChange={setPrice} defaultValue={item.amountOwed.toString()} style={{ flex: 1, marginHorizontal: 10, backgroundColor: "#EAEAEA", paddingHorizontal: 10}}/>
+              <TextInput keyboardType="number-pad" textAlign="right" value={price} onChange={setPrice} style={{ flex: 1, marginHorizontal: 10, backgroundColor: "#EAEAEA", paddingHorizontal: 10}}/>
            <Button mode="outlined" compact={true}>Update</Button> 
         </View>
         </Card.Content>
