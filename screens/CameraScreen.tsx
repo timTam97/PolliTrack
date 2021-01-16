@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import { Camera } from 'expo-camera';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function TabOneScreen() {
+
+export default function CameraScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+        <TouchableOpacity style={styles.button}>
+            <Text style={styles.title}>Camera</Text>
+        </TouchableOpacity>
     </View>
   );
 }
@@ -24,9 +25,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
+  button: {
+    width: 120,
+    height: 30,
+    backgroundColor: '#14274e'
+  }
 });
