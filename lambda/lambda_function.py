@@ -105,7 +105,7 @@ s3 = boto3.Session(
 
 
 def lambda_handler(event, context):
-    print(event["requestContext"]["http"]["method"])
+    # print(event)
     # if event["requestContext"]["http"]["method"] == "POST":
     # Generate signed headers
     auth = AWSRequestsAuth(
@@ -124,6 +124,8 @@ def lambda_handler(event, context):
         headers={"Content-Type": "image/jpeg"},
         verify=False,
     )
+    if ok.text == "null":
+        return {"statusCode": 404, "body": json.dumps({"msg": "No barcode found."})}
     print(ok.text)
     code = list(json.loads(ok.text).keys())[0]
     object_key = secrets.token_urlsafe(10) + ".jpeg"
@@ -159,7 +161,7 @@ def lambda_handler(event, context):
             "longitude": {"N": str(meta.get_lat_lng()[1])},
         },
     )
-    return {"statusCode": 200, "body": code}
+    return {"statusCode": 200, "body": json.dumps({"msg": "success", "barcode": code})}
     # elif event["requestContext"]["http"]["method"] == "GET":
     #     res = ddb.scan(TableName="image-data-table", ComparisonOperator="NOT_NULL")
     #     print("done")
