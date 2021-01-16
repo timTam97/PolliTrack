@@ -9,8 +9,8 @@ export default function AddSerialPrompt({navigation}) {
     <View style={styles.container}>
       <View style={{ flex: 1, }} />
       
-      <View style={{ flex: 9, alignItems: 'center', justifyContent: 'center' }} >
-        <Text style={{ ...styles.title, padding: 20, textAlign: 'center', color: '#DE8C1E',}}>
+      <View style={{ alignItems: 'center', justifyContent: 'center' , backgroundColor:'#FDF5D8'}} >
+        <Text style={{ ...styles.title, textAlign: 'center', color: '#DE8C1E',}}>
           Please take a photo of the serial number
       </Text>
     
@@ -22,11 +22,11 @@ export default function AddSerialPrompt({navigation}) {
           style={styles.placement}
         ></Image>
       
-      <View style={{ flex: 1, }} />
+      <View style={{  }} />
       <TouchableOpacity
         onPress={() => { navigation.navigate('TabThreeScreen', {})}} style={{
           ...styles.button, flex: 2, backgroundColor: '#de8c1e', alignItems: 'center', justifyContent: 'center'}}>
-        <Text style={{ color: 'white', fontSize: 40, }}>Proceed</Text>
+        <Text style={{ color: 'white', fontSize: 30, padding: 100, textAlign: 'center' }}>Proceed</Text>
       </TouchableOpacity>
       <View style={{ flex: 1 }} />
     </View>
@@ -36,18 +36,27 @@ export default function AddSerialPrompt({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FDF5D8',
   },
   title: {
-    fontSize: 20,
+    fontSize: 40,
     fontWeight: 'bold',
+    
   },
   placement: {
     marginHorizontal: -155,
-    marginVertical:100,
-    height: 50
+    marginVertical:40,
+    height: 300,
+    backgroundColor: '#FDF5D8',
+    
   },
   button: {
     borderRadius: 5,
-    margin: 10,
+    margin: 30,
+    backgroundColor: '#FDF5D8',
+    textAlign: 'center',
+    alignItems: 'center',
   }
 });

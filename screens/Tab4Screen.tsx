@@ -31,6 +31,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
+    backgroundColor: '#FDF5D8'
+
   },
   button: {
     alignItems: 'center',

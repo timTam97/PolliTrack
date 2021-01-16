@@ -136,6 +136,7 @@ export const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    backgroundColor: '#FDF5D8'
   },
   event: {
     position: 'absolute',
