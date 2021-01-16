@@ -9,6 +9,9 @@ import AddPhotoCapture from '../screens/AddPhotoCapture';
 import AddPhotoPrompt from '../screens/AddPhotoPrompt';
 import AddProductScreen from '../screens/AddProductScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
+import TabThreeScreen from '../screens/TabThreeScreen';
+import Tab4Screen from '../screens/Tab4Screen';
+import Tab5Screen from '../screens/Tab5Screen';
 import { AddProductParamList, BottomTabParamList} from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -30,6 +33,27 @@ export default function BottomTabNavigator() {
       <BottomTab.Screen
         name="TabTwo"
         component={TabTwoNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="TabThree"
+        component={TabThreeNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Tab4"
+        component={Tab4Navigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Tab5"
+        component={Tab5Navigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
@@ -80,5 +104,47 @@ function TabTwoNavigator() {
         options={{ headerTitle: 'Tab Two Title' }}
       />
     </TabTwoStack.Navigator>
+  );
+}
+
+const TabThreeStack = createStackNavigator<TabThreeParamList>();
+
+function TabThreeNavigator() {
+  return (
+    <TabThreeStack.Navigator>
+      <TabThreeStack.Screen
+        name="TabThreeScreen"
+        component={TabThreeScreen}
+        options={{ headerTitle: 'Tab Three Title' }}
+      />
+    </TabThreeStack.Navigator>
+  );
+}
+
+const Tab4Stack = createStackNavigator<Tab4ParamList>();
+
+function Tab4Navigator() {
+  return (
+    <Tab4Stack.Navigator>
+      <Tab4Stack.Screen
+        name="Tab4Screen"
+        component={Tab4Screen}
+        options={{ headerTitle: 'Tab 4 Title' }}
+      />
+    </Tab4Stack.Navigator>
+  );
+}
+
+const Tab5Stack = createStackNavigator<Tab5ParamList>();
+
+function Tab5Navigator() {
+  return (
+    <Tab5Stack.Navigator>
+      <Tab5Stack.Screen
+        name="Tab5Screen"
+        component={Tab5Screen}
+        options={{ headerTitle: 'Tab 5 Title' }}
+      />
+    </Tab5Stack.Navigator>
   );
 }

@@ -6,6 +6,9 @@ export type RootStackParamList = {
 export type BottomTabParamList = {
   Home: undefined;
   TabTwo: undefined;
+  TabThree: undefined;
+  Tab4: undefined;
+  Tab5: undefined;
 };
 
 export type HomeParamList = {
@@ -17,4 +20,20 @@ export type AddProductParamList = {
   process: addProcess;
   barcode: string;
   serialNumber: string;
+};
+
+export type TabTwoParamList = {
+  // leave this for now
+}
+
+export type TabThreeParamList = {
+  // leave this for now
+};
+
+export type Tab4ParamList = {
+  // leave this for now
+};
+
+export type Tab5ParamList = {
+  // leave this for now
 };

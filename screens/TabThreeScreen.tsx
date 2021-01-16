@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, TouchableOpacity, SafeAreaView, View, Alert } from 'react-native';
 import { Camera } from 'expo-camera';
 
-export default function TabTwoScreen() {
+export default function TabThreeScreen() {
   const [startCamera, setStartCamera] = React.useState(false)
   const [hasPermission, setHasPermission] = useState(null);
   const [cameraRef, setCameraRef] = useState(null);
