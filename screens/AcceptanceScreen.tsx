@@ -1,7 +1,7 @@
 import React from 'react';
 import {SafeAreaView, View, Text, Image, StyleSheet, ScrollView, TouchableHighlight} from 'react-native';
 
-export default function Tab5Screen({navigation}) {
+export default function AcceptanceScreen({navigation}) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={{display: 'flex', flexDirection: 'column', }}>

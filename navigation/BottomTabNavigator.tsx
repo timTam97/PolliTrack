@@ -10,7 +10,7 @@ import AddPhotoPrompt from '../screens/AddPhotoPrompt';
 import AddProductScreen from '../screens/AddProductScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import TabThreeScreen from '../screens/TabThreeScreen';
-import Tab4Screen from '../screens/Tab4Screen';
+import Tab4Screen from '../screens/AcceptanceScreen';
 import { AddProductParamList, BottomTabParamList} from '../types';
 import AddBarcodeCapture from '../screens/AddBarcodeCapture';
 import AddSerialCapture from '../screens/AddSerialCapture';
@@ -18,6 +18,7 @@ import AddBarcodePrompt from '../screens/AddBarcodePrompt';
 import AddSerialPrompt from '../screens/AddSerialPrompt';
 import AgendaScreen from '../screens/AgendaScreen';
 import ItemDetails from '../screens/ItemDetails';
+import AcceptanceScreen from '../screens/AcceptanceScreen';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -44,22 +45,14 @@ export default function BottomTabNavigator() {
           headerShown: false
         }}
       />
-      <BottomTab.Screen
+      {/* <BottomTab.Screen
         name="TabThree"
         component={TabThreeNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
           headerShown: false
         }}
-      />
-      <BottomTab.Screen
-        name="Tab4"
-        component={Tab4Navigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
-          headerShown: false
-        }}
-      />
+      /> */}
       <BottomTab.Screen
         name="Tab5"
         component={AgendaNavigator}
@@ -122,7 +115,11 @@ function AddProductNavigator() {
         component={AddSerialCapture}
         options={{ headerTitle: 'Add Serial Number' }}
       />
-      
+      <AddProductStack.Screen
+        name="acceptanceScreen"
+        component={AcceptanceScreen}
+        options={{ headerTitle: 'All done' }}
+      />
     </AddProductStack.Navigator>
   );
 }

@@ -69,7 +69,7 @@ export default function App({ navigation }) {
   const __confirm = (photo) => {
     // console.log(photo);
     postToDb(photo).then(onSetSnackBar()).then(setTimeout(() => {
-      navigation.navigate('addSerialPrompt');
+      navigation.navigate('acceptanceScreen');
     }, 3000));
   }
 
