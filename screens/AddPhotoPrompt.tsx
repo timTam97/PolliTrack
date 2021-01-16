@@ -19,7 +19,7 @@ export default function AddPhotoPrompt({navigation}) {
         </View>
       <View style={{ flex: 1, }} />
       <TouchableOpacity
-        onPress={() => { navigation.navigate('addPhotoCapture', {})}} style={{
+        onPress={() => { navigation.navigate('TabThreeScreen', {})}} style={{
           ...styles.button, flex: 2, backgroundColor: '#de8c1e', alignItems: 'center', justifyContent: 'center'}}>
         <Text style={{ color: 'white', fontSize: 40, }}>Proceed</Text>
       </TouchableOpacity>

@@ -10,7 +10,7 @@ export default function Tab5Screen({navigation}) {
           resizeMode="contain"
           style={styles.placement}
         ></Image>
-        <Text style={styles.title}>TY</Text>
+        <Text style={styles.title}>Thank you!</Text>
         <Text style={styles.subtitle}>Photos have been sent</Text>
 
       </View>
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     marginVertical:20
   },
   title: {
-    fontSize: 150,
+    fontSize: 50,
     // fontWeight: 'bold',
     color: '#DE8C1E',
     fontFamily: 'Roboto',
