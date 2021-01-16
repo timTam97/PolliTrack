@@ -16,7 +16,7 @@ export default function AddProductScreen({ navigation}) {
       <Text style={styles.title}>Tap to add Product</Text>
       <TouchableOpacity
         // onPress={() => navigation.navigate('addPhotoPrompt', {})}
-        onPress={() => navigation.navigate('addPhotoPrompt')}>
+        onPress={() => navigation.navigate('addSerialPrompt')}>
         <Image style={styles.button} source={require('../assets/images/addproduct.png')} />
       </TouchableOpacity>
     </View>
