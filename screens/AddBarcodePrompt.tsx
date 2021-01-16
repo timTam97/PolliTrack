@@ -24,7 +24,7 @@ export default function AddBarcodePrompt({navigation}) {
       
       <View style={{  }} />
       <TouchableOpacity
-        onPress={() => { navigation.navigate('TabThreeScreen', {})}} style={{
+        onPress={() => { navigation.navigate('addBarcodeCapture', {})}} style={{
           ...styles.button, flex: 2, backgroundColor: '#de8c1e', alignItems: 'center', justifyContent: 'center'}}>
         <Text style={{ color: 'white', fontSize: 30, padding: 100, textAlign: 'center' }}>Proceed</Text>
       </TouchableOpacity>

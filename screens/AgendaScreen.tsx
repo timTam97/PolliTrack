@@ -21,17 +21,19 @@ return (
         // considered that the date in question is not yet loaded
         items={{
           '2021-01-16': [{
-            "ProductName": "Sun King Pro 400", // Might get this from a look up table with the pollinategroup with the barcode
+            "productName": "Sun King Pro 400", // Might get this from a look up table with the pollinategroup with the barcode
             "barcode": "9300633645540",
+            "serialNumber": "1892336323",
             "timestamp": "1610792784",
             "image_url": "https://pollitrack-images-asdgybdvkl.s3.amazonaws.com/kIJvN7GdF-W7MQ.jpeg",
             "latitude": -37.862458333333336,
             "longitude": 145.1865527777778,
-            "amountOwed": 120.0,
+            "amountOwed": 0,
           }],
           '2021-01-17': [{
-            "ProductName": "Sun King Pro 300", // Might get this from a look up table with the pollinategroup with the barcode
+            "productName": "Sun King Pro 300", // Might get this from a look up table with the pollinategroup with the barcode
             "barcode": "9300633645540",
+            "serialNumber": "2837324845",
             "timestamp": "1610792784",
             "image_url": "https://pollitrack-images-asdgybdvkl.s3.amazonaws.com/kIJvN7GdF-W7MQ.jpeg",
             "latitude": -37.862488333333336,
@@ -39,8 +41,9 @@ return (
             "amountOwed": 120.0,
           }],
           '2021-01-18': [{
-            "ProductName": "Sun King Pro 200", // Might get this from a look up table with the pollinategroup with the barcode
+            "productName": "Sun King Solar Fan", // Might get this from a look up table with the pollinategroup with the barcode
             "barcode": "9300633645540",
+            "serialNumber": "2323457588",
             "timestamp": "1610792784",
             "image_url": "https://pollitrack-images-asdgybdvkl.s3.amazonaws.com/kIJvN7GdF-W7MQ.jpeg",
             "latitude": -37.862488333333336,
@@ -74,7 +77,7 @@ return (
                 <TouchableOpacity onPress={(navigation) => 
                 {navigationnext('itemDetails', {item: item})}}>
                   <List.Item 
-                    title={"Sold " + item.ProductName}
+                    title={"Sold " + item.productName}
                     description={"Amount Owing: $" + item.amountOwed}
                     style={{marginTop: 10, marginBottom: 10, backgroundColor: 'white', borderRadius: 10}} >
                   </List.Item>

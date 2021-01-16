@@ -24,7 +24,7 @@ export default function AddSerialPrompt({navigation}) {
       
       <View style={{  }} />
       <TouchableOpacity
-        onPress={() => { navigation.navigate('TabThreeScreen', {})}} style={{
+        onPress={() => { navigation.navigate('addSerialCapture', {})}} style={{
           ...styles.button, flex: 2, backgroundColor: '#de8c1e', alignItems: 'center', justifyContent: 'center'}}>
         <Text style={{ color: 'white', fontSize: 30, padding: 100, textAlign: 'center' }}>Proceed</Text>
       </TouchableOpacity>
