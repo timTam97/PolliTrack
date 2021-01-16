@@ -36,9 +36,6 @@ export default function TabTwoScreen() {
       setCapturedImage(photo)
     }
   
-  onPictureSaved = photo => {
-    console.log(photo);
-  }
   // const __savePhoto = () => {}
   // }
 
@@ -48,6 +45,7 @@ export default function TabTwoScreen() {
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
+
   return (
     <SafeAreaView style={styles.container}>
       <Camera style={styles.camera} type={type} ref={ref => {

@@ -20,31 +20,31 @@ export default function App() {
     }
   }
   const __takePicture = async () => {
-    const options = { onPictureSaved: this.onPictureSaved}
-    const photo: any = await camera.takePictureAsync(options);
-    setPreviewVisible(true);
+    await camera.takePictureAsync({base64: true}).then(async (data) => {
+        // console.log('data')
+        setPreviewVisible(true);
+        setCapturedImage(data);
+    })
     //setStartCamera(false)
-    setCapturedImage(photo);
   }
 
-//   const postToDb = async (photo) => {
-//     options = {
-//       'method': 'POST',
-//       'url': 'https://ta66kmwbn2.execute-api.us-east-1.amazonaws.com/prod/getImageData',
-//       'headers': {
-//         'Content-Type': 'image/jpeg'
-//       },
-//       body: photo
-//     };
-//     request(options, function (error, response) {
-//       if (error) throw new Error(error);
-//       console.log(response.body);
-//     });
-//   } 
+  const postToDb = async (photo) => {
+    // const request = require('request');
+    // let responce;
+    // console.log(photo)
+    await fetch('https://ta66kmwbn2.execute-api.us-east-1.amazonaws.com/prod/getImageData', {
+        'method': 'POST',
+        'headers': {
+            'Content-Type': 'image/jpeg'
+        },
+        body: photo.base64
+    }).then(console.log)
+  } 
 
-   const __savePhoto = () => {
-    console.log(photo);
-   }
+  const __confirm = (photo) => {
+    // console.log(photo);
+    postToDb(photo);
+  }
 
   const __retakePicture = () => {
     setCapturedImage(null)
@@ -80,7 +80,7 @@ export default function App() {
           }}
         >
           {previewVisible && capturedImage ? (
-            <CameraPreview photo={capturedImage} savePhoto={__savePhoto} retakePicture={__retakePicture} />
+            <CameraPreview photo={capturedImage} confirm={__confirm} retakePicture={__retakePicture} />
           ) : (
             <Camera
               type={cameraType}
@@ -224,8 +224,8 @@ const styles = StyleSheet.create({
   }
 })
 
-const CameraPreview = ({photo, retakePicture, savePhoto}: any) => {
-  console.log('sdsfds', photo)
+const CameraPreview = ({photo, retakePicture, confirm}: any) => {
+//   console.log('sdsfds', photo)
   return (
     <View
       style={{
@@ -275,7 +275,7 @@ const CameraPreview = ({photo, retakePicture, savePhoto}: any) => {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={savePhoto}
+              onPress={() => confirm(photo)}
               style={{
                 width: 130,
                 height: 40,
@@ -290,7 +290,7 @@ const CameraPreview = ({photo, retakePicture, savePhoto}: any) => {
                   fontSize: 20
                 }}
               >
-                save photo
+                confirm
               </Text>
             </TouchableOpacity>
           </View>
