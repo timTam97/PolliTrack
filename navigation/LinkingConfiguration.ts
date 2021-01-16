@@ -8,7 +8,7 @@ export default {
         screens: {
           TabOne: {
             screens: {
-              TabOneScreen: 'one',
+              Home: 'home',
             },
           },
           TabTwo: {
@@ -16,6 +16,21 @@ export default {
               TabTwoScreen: 'two',
             },
           },
+          TabThree: {
+            screens: {
+              TabThreeScreen: 'three',
+            },
+          },
+          Tab4: {
+            screens: {
+              Tab4Screen: 'four',
+            },
+          },
+          Tab5: {
+            screens: {
+              Tab5Screen: 'five',
+            },
+          }
         },
       },
       NotFound: '*',

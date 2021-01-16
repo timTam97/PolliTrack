@@ -5,9 +5,14 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
+import AddPhotoCapture from '../screens/AddPhotoCapture';
+import AddPhotoPrompt from '../screens/AddPhotoPrompt';
+import AddProductScreen from '../screens/AddProductScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import TabThreeScreen from '../screens/TabThreeScreen';
+import Tab4Screen from '../screens/Tab4Screen';
+import Tab5Screen from '../screens/Tab5Screen';
+import { AddProductParamList, BottomTabParamList} from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -16,18 +21,39 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Home"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
         name="TabOne"
-        component={TabOneNavigator}
+        component={AddProductNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-home" color={color} />,
         }}
       />
       <BottomTab.Screen
         name="TabTwo"
         component={TabTwoNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="TabThree"
+        component={TabThreeNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Tab4"
+        component={Tab4Navigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Tab5"
+        component={Tab5Navigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
@@ -44,20 +70,29 @@ function TabBarIcon(props: { name: string; color: string }) {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const AddProductStack = createStackNavigator<AddProductParamList>();
 
-function TabOneNavigator() {
+function AddProductNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+    <AddProductStack.Navigator>
+      <AddProductStack.Screen
+        name="AddProduct"
+        component={AddProductScreen}
+        options={{ headerTitle: 'Add Product' }}
       />
-    </TabOneStack.Navigator>
+      <AddProductStack.Screen
+        name="addPhotoPrompt"
+        component={AddPhotoPrompt}
+        options={{ headerTitle: 'Add Photo' }}
+      />
+      <AddProductStack.Screen
+        name="addPhotoCapture"
+        component={AddPhotoCapture}
+        options={{ headerTitle: 'Add Photo' }}
+      />
+    </AddProductStack.Navigator>
   );
 }
-
 const TabTwoStack = createStackNavigator<TabTwoParamList>();
 
 function TabTwoNavigator() {
@@ -69,5 +104,47 @@ function TabTwoNavigator() {
         options={{ headerTitle: 'Tab Two Title' }}
       />
     </TabTwoStack.Navigator>
+  );
+}
+
+const TabThreeStack = createStackNavigator<TabThreeParamList>();
+
+function TabThreeNavigator() {
+  return (
+    <TabThreeStack.Navigator>
+      <TabThreeStack.Screen
+        name="TabThreeScreen"
+        component={TabThreeScreen}
+        options={{ headerTitle: 'Tab Three Title' }}
+      />
+    </TabThreeStack.Navigator>
+  );
+}
+
+const Tab4Stack = createStackNavigator<Tab4ParamList>();
+
+function Tab4Navigator() {
+  return (
+    <Tab4Stack.Navigator>
+      <Tab4Stack.Screen
+        name="Tab4Screen"
+        component={Tab4Screen}
+        options={{ headerTitle: 'Tab 4 Title' }}
+      />
+    </Tab4Stack.Navigator>
+  );
+}
+
+const Tab5Stack = createStackNavigator<Tab5ParamList>();
+
+function Tab5Navigator() {
+  return (
+    <Tab5Stack.Navigator>
+      <Tab5Stack.Screen
+        name="Tab5Screen"
+        component={Tab5Screen}
+        options={{ headerTitle: 'Tab 5 Title' }}
+      />
+    </Tab5Stack.Navigator>
   );
 }

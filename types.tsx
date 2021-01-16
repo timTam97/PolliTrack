@@ -4,14 +4,36 @@ export type RootStackParamList = {
 };
 
 export type BottomTabParamList = {
-  TabOne: undefined;
+  Home: undefined;
   TabTwo: undefined;
+  TabThree: undefined;
+  Tab4: undefined;
+  Tab5: undefined;
 };
 
-export type TabOneParamList = {
-  TabOneScreen: undefined;
+export type HomeParamList = {
+  HomeScreen: undefined;
+};
+export type addProcess = 'addFace' | 'AddBarcode' | 'AddSerial' | 'Done';
+
+export type AddProductParamList = {
+  process: addProcess;
+  barcode: string;
+  serialNumber: string;
 };
 
 export type TabTwoParamList = {
-  TabTwoScreen: undefined;
+  // leave this for now
+}
+
+export type TabThreeParamList = {
+  // leave this for now
+};
+
+export type Tab4ParamList = {
+  // leave this for now
+};
+
+export type Tab5ParamList = {
+  // leave this for now
 };
