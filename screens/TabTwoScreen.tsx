@@ -1,132 +1,63 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, TouchableOpacity, SafeAreaView, View, Alert } from 'react-native';
-import { Camera } from 'expo-camera';
+import * as React from 'react';
+import {StyleSheet, TouchableHighlight, Image} from 'react-native';
+import MapView from 'react-native-maps';
+import {Text, View} from 'react-native';
+import * as Linking from 'expo-linking';
 
-export default function TabTwoScreen() {
-  const [startCamera, setStartCamera] = React.useState(false)
-  const [hasPermission, setHasPermission] = useState(null);
-  const [cameraRef, setCameraRef] = useState(null);
-  const [previewVisible, setPreviewVisible] = useState(false);
-  const [capturedImage, setCapturedImage] = useState<any>(null);
-  const [type] = useState(Camera.Constants.Type.back);
-  // const cameraRef = useRef(null);
+let appointmentTime: number = Date.now();
+appointmentTime = appointmentTime + (48 * (60 * 60 * 1000));
 
-  useEffect(() => {
-    (async () => {
-      const { status } = await Camera.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
-    })();
-  }, []);
+const dest = {
+  'city': 'South Yarra',
+  'country': 'Australia',
+  'district': null,
+  'isoCountryCode': 'AU',
+  'name': '670 Chapel',
+  'postalCode': '3141',
+  'region': 'VIC',
+  'street': 'Malcolm Street',
+  'subregion': 'Melbourne',
+  'timezone': 'Australia/Melbourne',
+};
+const destAddress = dest.name + ' ' + dest.city + ' ' + dest.region + ' ' + dest.postalCode.replace(/ /g, '+');
 
-  const __startCamera = async () => {
-    const {status} = await Camera.requestPermissionsAsync()
-    console.log(status)
-    if (status === 'granted') {
-      setStartCamera(true)
-    } else {
-      Alert.alert('Access denied')
-    }
-  }
-
-  const __takePicture = async () => {
-    if (cameraRef) {
-      const photo: any = await cameraRef.takePictureAsync();
-      setPreviewVisible(true)
-      //setStartCamera(false)
-      setCapturedImage(photo)
-    }
+export default function Appointments({navigation}: any) {
   
-  // const __savePhoto = () => {}
-  // }
-
-  if (hasPermission === null) {
-    return <SafeAreaView />;
-  }
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
-  }
-
+  // let a: LocationGeocodedLocation;
+  // Location.geocodeAsync("South Yarra Clinic").then((x) => a = x[0])
   return (
-    <SafeAreaView style={styles.container}>
-      <Camera style={styles.camera} type={type} ref={ref => {
-          setCameraRef(cameraRef);
-      }}>
-        <View style={styles.container1}>
-          <View
-            style={{
-              position: 'absolute',
-              left: '5%',
-              top: '10%',
-              flexDirection: 'column',
-              justifyContent: 'space-between'
-            }}
-          >
-          </View>
-          <View
-            style={{
-              position: 'absolute',
-              bottom: 0,
-              flexDirection: 'row',
-              flex: 1,
-              width: '100%',
-              padding: 20,
-              justifyContent: 'space-between'
-            }}
-          >
-            <View
-              style={{
-                alignSelf: 'center',
-                flex: 1,
-                alignItems: 'center'
-              }}
-            >
-              <TouchableOpacity
-                onPress={__takePicture}
-                style={{
-                  width: 70,
-                  height: 70,
-                  bottom: 0,
-                  borderRadius: 50,
-                  backgroundColor: '#fff'
-                }}
-              />
-            </View>
-          </View>
-        </View>      
-      </Camera>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <MapView
+        style={styles.mapStyle}
+        // initialRegion={DirectionUtil.clinicLocation}
+        onPress={(() => Linking.openURL('comgooglemaps://?daddr=' + destAddress + '&directionsmode=driving'))}>
+      </MapView>
+    </View>
   );
 }
-}
+
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#FFB138',
-    flexDirection: 'row',
-  },
-  container1: {
-    width: '100%',
-    height: '100%',
-  },
-  camera: {
+    alignContent: 'center',
     flex: 1,
   },
-  buttonContainer: {
-    flex: 1,
-    backgroundColor: 'transparent',
-    flexDirection: 'row',
-    margin: 20,
+
+  mapStyle: {
+    // position: "absolute",
+    // alignContent: "center",
+    alignSelf: 'center',
+    borderWidth: 1,
+    borderRadius: 17,
+    height: 550,
+    width: 322,
+    marginTop: 150,
+    top: -100,
+    marginLeft: 20,
+    marginRight: 20,
+    // width: Dimensions.get('window').width,
+    // height: Dimensions.get('window').height,
+    // radi: Dimensions.get('window').width / 2
   },
-  button: {
-    flex: 0.1,
-    alignSelf: 'flex-end',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 18,
-    color: 'white',
-  }
+
 });
