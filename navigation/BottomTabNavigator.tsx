@@ -13,6 +13,10 @@ import TabThreeScreen from '../screens/TabThreeScreen';
 import Tab4Screen from '../screens/Tab4Screen';
 import Tab5Screen from '../screens/Tab5Screen';
 import { AddProductParamList, BottomTabParamList} from '../types';
+import AddBarcodeCapture from '../screens/AddBarcodeCapture';
+import AddSerialCapture from '../screens/AddSerialCapture';
+import AddBarcodePrompt from '../screens/AddBarcodePrompt';
+import AddSerialPrompt from '../screens/AddSerialPrompt';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -86,10 +90,31 @@ function AddProductNavigator() {
         options={{ headerTitle: 'Add Photo' }}
       />
       <AddProductStack.Screen
+        name="addBarcodePrompt"
+        component={AddBarcodePrompt}
+        options={{ headerTitle: 'Add Barcode' }}
+      />
+      <AddProductStack.Screen
+        name="addSerialPrompt"
+        component={AddSerialPrompt}
+        options={{ headerTitle: 'Add Serial number' }}
+      />
+      <AddProductStack.Screen
         name="addPhotoCapture"
         component={AddPhotoCapture}
         options={{ headerTitle: 'Add Photo' }}
       />
+      <AddProductStack.Screen
+        name="addBarcodeCapture"
+        component={AddBarcodeCapture}
+        options={{ headerTitle: 'Add Barcode' }}
+      />
+      <AddProductStack.Screen
+        name="addSerialCapture"
+        component={AddSerialCapture}
+        options={{ headerTitle: 'Add Serial Number' }}
+      />
+      
     </AddProductStack.Navigator>
   );
 }
