@@ -5,9 +5,11 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import HomeScreen from '../screens/HomeScreen';
+import AddPhotoCapture from '../screens/AddPhotoCapture';
+import AddPhotoPrompt from '../screens/AddPhotoPrompt';
+import AddProductScreen from '../screens/AddProductScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import { AddProductParamList, BottomTabParamList} from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -19,8 +21,8 @@ export default function BottomTabNavigator() {
       initialRouteName="Home"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="Home"
-        component={HomeNavigator}
+        name="TabOne"
+        component={AddProductNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-home" color={color} />,
         }}
@@ -44,20 +46,29 @@ function TabBarIcon(props: { name: string; color: string }) {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const HomeStack = createStackNavigator<HomeParamList>();
+const AddProductStack = createStackNavigator<AddProductParamList>();
 
-function HomeNavigator() {
+function AddProductNavigator() {
   return (
-    <HomeStack.Navigator>
-      <HomeStack.Screen
-        name="HomeScreen"
-        component={HomeScreen}
-        options={{ headerTitle: 'Home' }}
+    <AddProductStack.Navigator>
+      <AddProductStack.Screen
+        name="AddProduct"
+        component={AddProductScreen}
+        options={{ headerTitle: 'Add Product' }}
       />
-    </HomeStack.Navigator>
+      <AddProductStack.Screen
+        name="addPhotoPrompt"
+        component={AddPhotoPrompt}
+        options={{ headerTitle: 'Add Photo' }}
+      />
+      <AddProductStack.Screen
+        name="addPhotoCapture"
+        component={AddPhotoCapture}
+        options={{ headerTitle: 'Add Photo' }}
+      />
+    </AddProductStack.Navigator>
   );
 }
-
 const TabTwoStack = createStackNavigator<TabTwoParamList>();
 
 function TabTwoNavigator() {

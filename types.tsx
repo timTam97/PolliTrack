@@ -11,7 +11,10 @@ export type BottomTabParamList = {
 export type HomeParamList = {
   HomeScreen: undefined;
 };
+export type addProcess = 'addFace' | 'AddBarcode' | 'AddSerial' | 'Done';
 
-export type TabTwoParamList = {
-  TabTwoScreen: undefined;
+export type AddProductParamList = {
+  process: addProcess;
+  barcode: string;
+  serialNumber: string;
 };
