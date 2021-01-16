@@ -16,7 +16,7 @@ export default function AddProductScreen({navigation}) {
       <Text style={styles.title}>Tap to add Product</Text>
       <TouchableOpacity
         // onPress={() => navigation.navigate('addPhotoPrompt', {})}
-        onPress={() => navigation.navigate('addSerialPrompt')}>
+        onPress={() => navigation.navigate('addPhotoPrompt')}>
         <Image style={styles.button} source={require('../assets/images/addproduct.png')} />
       </TouchableOpacity>
     </View>
@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
     
   },
   title: {
-    fontSize: 30,
-    // fontWeight: 'bold',
+    fontSize: 40,
+    fontWeight: 'bold',
     
     color: '#DE8C1E',
     fontFamily: 'Roboto'

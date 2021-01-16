@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
   container: {
     alignContent: 'center',
     flex: 1,
+    backgroundColor: '#FDF5D8'
   },
 
   mapStyle: {
