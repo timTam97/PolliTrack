@@ -11,12 +11,13 @@ import AddProductScreen from '../screens/AddProductScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import TabThreeScreen from '../screens/TabThreeScreen';
 import Tab4Screen from '../screens/Tab4Screen';
-import Tab5Screen from '../screens/Tab5Screen';
 import { AddProductParamList, BottomTabParamList} from '../types';
 import AddBarcodeCapture from '../screens/AddBarcodeCapture';
 import AddSerialCapture from '../screens/AddSerialCapture';
 import AddBarcodePrompt from '../screens/AddBarcodePrompt';
 import AddSerialPrompt from '../screens/AddSerialPrompt';
+import AgendaScreen from '../screens/AgendaScreen';
+import ItemDetails from '../screens/ItemDetails';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -57,7 +58,7 @@ export default function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Tab5"
-        component={Tab5Navigator}
+        component={AgendaNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
@@ -160,16 +161,21 @@ function Tab4Navigator() {
   );
 }
 
-const Tab5Stack = createStackNavigator<Tab5ParamList>();
+const AgendaStack = createStackNavigator<Tab5ParamList>();
 
-function Tab5Navigator() {
+function AgendaNavigator() {
   return (
-    <Tab5Stack.Navigator>
-      <Tab5Stack.Screen
-        name="Tab5Screen"
-        component={Tab5Screen}
-        options={{ headerTitle: 'Tab 5 Title' }}
+    <AgendaStack.Navigator>
+      <AgendaStack.Screen
+        name="agenda"
+        component={AgendaScreen}
+        options={{ headerTitle: 'Agenda' }}
       />
-    </Tab5Stack.Navigator>
+      <AgendaStack.Screen
+        name="itemDetails"
+        component={ItemDetails}
+        options={{ headerTitle: 'Agenda' }}
+      />
+    </AgendaStack.Navigator>
   );
 }

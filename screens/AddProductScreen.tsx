@@ -10,7 +10,7 @@ import { Text, View } from '../components/Themed';
 import { AddProductParamList } from '../types';
 
 
-export default function AddProductScreen({ navigation}) {
+export default function AddProductScreen({navigation}) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tap to add Product</Text>

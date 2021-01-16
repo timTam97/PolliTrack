@@ -3,13 +3,14 @@ import { useState } from 'react';
 import {SafeAreaView, View, Text, Image, StyleSheet, ScrollView, TouchableHighlight, TouchableOpacity} from 'react-native';
 import { List } from 'react-native-paper';
 import { Agenda } from 'react-native-calendars';
+import ItemDetails from './ItemDetails';
 
 const timeToString = (time) => {
   const date = new Date(time);
   return date.toISOString().split('T')[0];
 };
 
-export default function Tab5Screen() {
+export default function AgendaScreen({navigation}) {
   const [items, setItems] = useState({});
 return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -66,12 +67,15 @@ return (
         // Max amount of months allowed to scroll to the future. Default = 50
         futureScrollRange={50}
         // Specify how each item should be rendered in agenda
-        renderItem={({ ProductName, amountOwed }) => {
+        renderItem={(item) => {
+              let navigationnext = navigation.navigate;
+              console.log(navigationnext);
               return (
-                <TouchableOpacity>
+                <TouchableOpacity onPress={(navigation) => 
+                {navigationnext('itemDetails', {item: item})}}>
                   <List.Item 
-                    title={"Sold " + ProductName}
-                    description={"Amount Owing: $" + amountOwed}
+                    title={"Sold " + item.ProductName}
+                    description={"Amount Owing: $" + item.amountOwed}
                     style={{marginTop: 10, marginBottom: 10, backgroundColor: 'white', borderRadius: 10}} >
                   </List.Item>
                 </TouchableOpacity>

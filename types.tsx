@@ -34,6 +34,6 @@ export type Tab4ParamList = {
   // leave this for now
 };
 
-export type Tab5ParamList = {
-  // leave this for now
+export type AgendaParamList = {
+  item: undefined
 };
